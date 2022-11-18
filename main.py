@@ -11,7 +11,7 @@ import requests
 import time
 from bs4 import BeautifulSoup
 """
-1、从配置文件中获取变量
+#1、从配置文件中获取变量
 """
 conf=configparser.ConfigParser()
 config_path=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -30,11 +30,7 @@ user_id = conf.get("info","user_id") #接收消息的微信号，注意这个不
 user_id1=user_id.split(",")
 print(type(user_id1))
 
-
-"""
-2、定义获取数据的函数
-
-"""
+#2、定义获取数据的函数
 #随机依据吃早饭的话
 def get_eatmorning_words():
     list=[
@@ -272,9 +268,9 @@ def top_mv():
     # print(soup2[0].text)
     # 4数据的处理
 
-    """简单处理1，输入数值N，返回排第N的电影名及评分"""
+   # """简单处理1，输入数值N，返回排第N的电影名及评分"""
 
-    """处理2，将电影名和评分组成[{电影名：评分},{:}]的形式"""
+   # """处理2，将电影名和评分组成[{电影名：评分},{:}]的形式"""
     list_name = []  # 将电影名做成一个列表
     for i in range(10):
         list_name.append(soup1[i]['alt'])
@@ -295,12 +291,7 @@ def top_mv():
 
     return show
 
-
-
-
-"""
-3、调用函数，获取数据，保存为字典格式数据
-"""
+#3、调用函数，获取数据，保存为字典格式数据
 #获取天气和温度
 wea1, temperature1 = get_weather(city1)
 wea2, temperature2 = get_weather(city1)
@@ -348,18 +339,13 @@ data = {"m_n_a":{"value":m_n_a,"color":get_random_color()},
         "mv":{"value":top_mv(),"color":get_random_color()}
 
         }
-
-
-"""
-4、实例化微信客户端
-"""
+#4、实例化微信客户端
 #模拟登录微信客户端
 client = WeChatClient(app_id, app_secret)
 #实例化微信客户端
 wm = WeChatMessage(client)
-
-"""
-5、发送消息
+ 
+#5、发送消息
 """
 #参数 接收对象、消息模板ID、数据（消息模板里面的的变量与字典数据做匹配）
 
